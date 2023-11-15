@@ -1,12 +1,87 @@
+* {
+    box-sizing: border-box;
+    background: rgb(5, 5, 5);
+  }
 
-/* 
+.container-fluid {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
+.container {
+    width: fit-content;
+    padding: 40px 50px 25px 50px;
+    border: 2px solid;
+    border-color: orange;
+    border-radius: 15px;
+    box-shadow: 1px 1px 27px -5px rgba(0,0,0,0.47);
+    color: white;
+}
 
-*/
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.todo-input {
+    margin-top: px;
+    margin-bottom: 25px;
+    text-align: left;
+    width: 375px;
+    background: orange;
+    margin-right: 20px;
+    padding: 10px 20px;
+    border: 2px solid;
+    border-color: orange;
+    border-radius: 10px;
+    color: rgb;
+    outline: none;
+}
+
+.todo-button {
+    background: rgba(255, 166, 0, 0.005);
+    padding: 10px 20px;
+    transition-duration: 0.4s;
+    border-radius: 10px;
+    border: 2px solid;
+    border-color: orange;
+    color: white;
+}
+
+.todo-button:hover {
+  background-color: orange;
+  color: black;
+}
+
+
+.todo-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background: rgba(255, 166, 0, 0);
+    text-align: left;
+    font-size: large;
+    color: white;
+}
+
+.todo-list-item {
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid;
+    border-radius: 10px;
+    border-color: orange;
+    padding: 10px 20px;
+    margin-bottom: 25px;
+    color: white;
+}
+
+.clear-list-button {
+
+    color: white;
+    border: 2px solid;
+    border-radius: 50px;
+    border-color: orange;
+    padding: 0px 10px;
+}
