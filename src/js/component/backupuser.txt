@@ -1,0 +1,19 @@
+    const [user, setUser] = useState ([])
+    
+    useEffect(() => {
+        fetch("https://playground.4geeks.com/apis/fake/todos/user/")
+          .then(response => response.json())
+          .then(json => setUsers(json))
+      }, [])
+
+    const addUser = () => {
+        const name = newName.trim();
+        fetch('https://playground.4geeks.com/apis/fake/todos/user/alesanchezr', {
+            method: "PUT",
+            body: JSON.stringify(todos),
+            headers: {
+                "Content-Type": "application/json"
+            }
+            .then(response => response.json())
+            .then(data => {
+            setUser([...user, data])

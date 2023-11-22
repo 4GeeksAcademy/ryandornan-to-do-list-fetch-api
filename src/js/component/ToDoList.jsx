@@ -1,15 +1,38 @@
-import React, { useState } from 'react';
-import ClearList from './ClearList';
+import React, { useState, useEffect } from 'react';
 
 const ToDoList = () => {
 
     const [list, setList] = useState([]);
     const [input, setInput] = useState("");
+    const domain = "https://playground.4geeks.com/apis/fake/todos/user/ryandornan";
+
+
+
+    const handleFetchTasks = async () => {
+        const textResponse = await fetch(domain);
+        const jsonResponse = await textResponse.json();
+        setList (jsonResponse);
+    }
+
+    useEffect (() => {
+        handleFetchTasks();
+    }, []);
+
+    async function updateToDo (newList) {
+
+        await fetch (domain, {
+            method: 'PUT',
+            headers: {
+              "Content-Type": "application/json"
+            }, body: JSON.stringify(newList),
+         });
+          handleFetchTasks();
+    }
 
     const addToDo = (toDo) => {
         const newToDo = {
-            id: Math.random(),
-            toDo: toDo,
+            label : toDo,
+            done : false,
         };
 
         // add the todo to the list
@@ -17,6 +40,8 @@ const ToDoList = () => {
 
         // clear input box
         setInput("");
+
+        updateToDo ([...list, newToDo]);
     };
 
     const deleteToDo = (id) => {
@@ -24,6 +49,8 @@ const ToDoList = () => {
         const newList = list.filter((toDo) => toDo.id !== id);
 
         setList(newList);
+        updateToDo (newList);
+        
     };
 
     const handleKeyPress = (e) => {
@@ -43,7 +70,7 @@ const ToDoList = () => {
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    onKeyPress={handleKeyPress}
+                    onKeyDown = {handleKeyPress}
                 />
 
                 <button className='todo-button' onClick={() => addToDo(input)}>
@@ -53,7 +80,7 @@ const ToDoList = () => {
                 <ul className='todo-list'>
                     {list.map((toDo) => (
                         <li className='todo-list-item' key={toDo.id}>
-                            {toDo.toDo}
+                            {toDo.label}
                             <button onClick={() => deleteToDo(toDo.id)} className="clear-list-button">
                                 -
                             </button>
